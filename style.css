@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -21,7 +21,7 @@ body{
     background: #141414;
 }
 
-wrapper header{
+.wrapper header{
     display: flex;
     color: #b2b2b2;
     align-items: center;
@@ -38,7 +38,7 @@ header .column{
 header span{
     font-weight: 500;
     margin-right: 15px;
-    font-size: 1.20rem;
+    font-size: 1.19rem;
 }
 header input{
     outline: none;
@@ -65,7 +65,7 @@ header input{
     height: 20px;
     border-radius: 50%;
     background: #8c8c8c;
-    transform: translate(-50%);
+    transform: translateY(-50%);
     transition: all 0.3s ease;
 }
 
@@ -127,3 +127,47 @@ header input{
     bottom: 13px;
     color: #888888;
 }
+
+@media screen and (max-width:815px) {
+    .wrapper{
+        padding: 25px;
+    }
+    header{
+        flex-direction: column;
+    }
+    header :where(h2,.column){
+        margin-bottom: 13px;
+    }
+    .volume-slider input{
+        max-width: 100px;
+    }
+    .piano-keys{
+        margin-top: 20px;
+    }
+    .piano-keys .key:where(:nth-child(9), :nth-child(10)){
+        display: none;
+    }
+    .piano-keys .black{
+        height: 100px;
+        width: 40px;
+        margin: 0 -20px 0 -20px;
+    }
+    .piano-keys .white{
+        height: 180px;
+        width: 60px;
+    }
+}
+
+@media screen and (max-width:615px){
+    .piano-keys .key:nth-child(13),
+    .piano-keys .key:nth-child(14),
+    .piano-keys .key:nth-child(15),
+    .piano-keys .key:nth-child(16),
+    .piano-keys .key:nth-child(17){
+        display: none;
+    }
+    .piano-keys .white{
+        width: 50px;
+    }
+}
+
