@@ -118,3 +118,12 @@ header input{
     font-size: 1.13rem;
     text-align: center;
 }
+
+.piano-keys .key.hide span{
+    display: none;
+}
+
+.piano-keys .black span{
+    bottom: 13px;
+    color: #888888;
+}
