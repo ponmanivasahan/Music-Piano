@@ -4,6 +4,7 @@ keysCheckbox=document.querySelector(".keys-checkbox input");
 
 let allKeys=[],
 audio=new Audio(`music/a.wav`);
+const colors=["#ff006e","#8338ec","#3a86ff","#fb5607","#ffbe0b"];
 
 const playTune=(key)=>{
     audio.src=`music/${key}.wav`;
@@ -11,6 +12,8 @@ const playTune=(key)=>{
     audio.play();
 
     const clickedKey=document.querySelector(`[data-key="${key}"]`);
+    const randomColor=colors[Math.floor(Math.random()*colors.length)];
+    clickedKey.style.background=randomColor
     clickedKey.classList.add("active");
 
     setTimeout(()=>{
@@ -36,6 +39,9 @@ const showHideKeys=()=>{
 const pressedKey=(e)=>{
     if(allKeys.includes(e.key))playTune(e.key);
 }
+document.body.style.background=`hsl(${Math.random()*360},80%,60%)`;
+setTimeout(()=>document.body.style.background="#e3f2fd",200);
+
 
 keysCheckbox.addEventListener("click",showHideKeys);
 volumeSlider.addEventListener("input",handleVolume);
