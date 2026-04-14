@@ -229,45 +229,166 @@ input[type=range]:hover::-webkit-slider-thumb{
     min-width: 26px;
     text-align: right;
 }
-.volume-slider input{
-    accent-color: #fff;
-}
-.keys-checkbox input{
-    height: 30px;
-    width: 60px;
-    cursor: pointer;
-    appearance: none;
+
+.piano-card{
+    background: #FDFCF9;
+    border: 1px solid #DDD8CE;
+    border-radius: 26px;
+    padding: 28px 28px 40px;
     position: relative;
-    background: #4b4b4b;
-}
-.keys-checkbox input::before{
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #8c8c8c;
-    transform: translateY(-50%);
-    transition: all 0.3s ease;
+    box-shadow: 6px 6px 18px rgba(180,174,162,.55), -3px -3px 10px rgba(255,255,255,.85),inset 0 1px 0 rgba(255,255,255,0.9);
+    overflow: visible;
 }
 
-.keys-checkbox input:checked::before{
-    left: 35px;
-    background: #fff;
+.piano-card::before{
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 8%;
+    right: 8%;
+    height: 12px;
+    background: linear-gradient(180deg, #C9A96E 0%, #A8844A 100%);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.3);
+}
+.piano-brand{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px; 
+  font-weight: 400; 
+  letter-spacing: 6px;
+  text-transform: uppercase; 
+  color: #A8A29C;
+  text-align: center; 
+  margin-bottom: 22px;
+}
+.keys-wrap{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    height: 188px;
+    gap: 0;
+    user-select: none;
+    touch-action: none;
+}
+
+.key{
+    position: relative;
+    border-radius: 0 0 8px 8px;
+    cursor: pointer;
+    transition: transform 0.07s ease, box-shadow 0.07s ease, background 0.07s ease;
+    flex-shrink: 0;
+}
+
+.key span{
+    position: absolute;
+    bottom: 11px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.keys.hide-labels span{
+    opacity: 0 ! important;
 }
 .piano-keys{
     display: flex;
     list-style: none;
     margin-top: 40px;
 }
-.piano-keys .key{
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-    text-transform: uppercase;
+
+.key.white{
+    width: 48px;
+    height: 188px;
+    z-index: 1;
+    margin-right: 3px;
+    background: linear-gradient(180deg,#FEFEFE 0%, #F8F5EE 70%, #F0ECE4 100%);
+    border: 1px solid #D4D0C8;
+    border-top: none;
+    box-shadow: 2px 4px 0 #C8C4BC,
+    4px 7px 12px rgba(0,0,0,.13),
+    inset 0 -4px 0 rgba(0,0,0,.06),
+    inset 0 1px 0 rgba(255,255,255,0.95);
 }
+
+.key.white span{
+    color: #BDB8B0;
+}
+
+.key.white:hover{
+    background: linear-gradient(180deg,#fff 0%, #FAF8F3 70%, #EDE9E1 100%);
+    box-shadow:2px 4px 0 #C8C4BC,
+    4px 9px 16px rgba(0,0,0,.16),
+    inset 0 -4px 0 rgba(0,0,0,.06),
+    inset 0 1px 0 rgba(255,255,255,0.95);
+}
+
+.key.white.pressed,.key.white.active{
+    background: linear-gradient(180deg,#22C55E 0%, #1DAF53 100%) !important;
+    transform: translateY(3px) scaleY(.985);
+    transform-origin: top;
+    box-shadow: 1px 1px 0 #17923F,
+    2px 3px 6px rgba(0,0,0,.2),
+    inset 0 3px 6px rgba(0,0,0,.15) !important;
+}
+.key.white.pressed span,
+.key.white.active span{
+    color: rgba(255,255,255,.75) !important; 
+    opacity: 1 !important; 
+}
+
+.key.black{
+    width: 32px;
+    height: 116px;
+    z-index: 2;
+    margin-left: -18px;
+    margin-right: -16px;
+    background: linear-gradient(180deg, #2C3A48 0%,  #1E2832 40%, #141C24 100%);
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 6px 0 #0D1218,
+    0 10px 18px rgba(0,0,0,.45),
+    inset 0 2px 0 rgba(255,255,255,0.10),
+    inset 0 -3px 0 rgba(0,0,0,.4);
+}
+.key.black span{
+    color: rgba(255,255,255,.2);;
+}
+
+.key.black:hover {
+  background: linear-gradient(180deg, #38495A 0%, #273545 40%, #1A2430 100%);
+}
+
+.key.black.pressed span,
+.key.black.active span{
+    color: rgba(255,255,255,0.6) !important;
+    opacity: 1 !important;
+}
+
+.key::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: rgba(255,255,255,.3);
+  transition: opacity .12s;
+}
+
+.key.pressed::after{
+    opacity: 1;
+}
+
+.bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
 
 .piano-keys .black{
     z-index: 2;
