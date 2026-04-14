@@ -60,7 +60,65 @@
                 <div class="key white" data-key=";" data-freq="261.63"><span>;</span></div>
             </div>
           </div>  
-          
+          <div class="bottom">
+            <div class="rec-bar">
+                <div class="rec-top">
+                    <div class="reel" id="recReel"></div>
+                    <div class="rec-status-group">
+                        <div class="rec-status-line">
+                            <div class="rec-led" id="recDot"></div>
+                            <span class="rec-state-text" id="recState">Ready</span>
+                        </div>
+                        <div style="display: flex; align-items: baseline; gap: 6px">
+                            <span class="rec-clock" id="rec-Clock">0:00</span>
+                            <span class="rec-note-count" id="noteBadge"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-strip" id="pbStrip">
+                    <div class="pb-rail"><div class="pb-fill" id="pbFill"></div></div>
+                    <span class="pb-t" id="pbClock">0:00</span>
+                </div>
+                <div class="rec-actions">
+                   <button class="act act-rec" id="btnRec">
+                   <div class="act-icon"><svg viewBox="0 0 14 14" fill="currentColor"><circle cx="7" cy="7" r="4.5"/></svg></div>
+                    Record
+                   </button>
+                   <button class="act act-play" id="btnPlayLive" disabled>
+                    <div class="act-icon"><svg viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg></div>
+                    Play
+                    </button>  
+                    <button class="act act-save" id="btnSave" disabled>
+                     <div class="act-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v2h10v-2M7 2v7M4 6l3 3 3-3"/></svg></div>
+                     Save
+                     </button> 
+                </div>
+            </div>
+            
+            <div class="saved-section">
+                <div class="save-head">
+                    <span class="saved-title">Saved recordings</span>
+                    <button class="clr-btn" id="clearAllBtn" style="display:none">Clear All</button>
+                </div>
+                <div class="recs-list" id="recsList"></div>
+            </div>
+          </div>
+
+          <footer>
+            <div class="hint-group">
+                <span class="hint-lbl">White</span>
+                <span class="kdb">A</span><span class="kbd">S</span><span class="kbd">D</span>
+                <span class="kbd">F</span><span class="kbd">G</span><span class="kbd">H</span>
+                <span class="kbd">J</span><span class="kbd">K</span><span class="kbd">L</span>
+                <span class="kbd">;</span>
+            </div>
+            <div class="hint-group">
+                <span class="hint-lbl">Black</span>
+                <span class="kbd">W</span><span class="kbd">E</span><span class="kbd">T</span>
+                <span class="kbd">Y</span><span class="kbd">U</span><span class="kbd">O</span>
+                <span class="kbd">P</span>
+            </div>
+          </footer>
         </div>
         <script src="index.js"></script>
     </body>
