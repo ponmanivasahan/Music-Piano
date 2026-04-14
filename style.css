@@ -801,46 +801,73 @@ input[type=range]:hover::-webkit-slider-thumb{
     border-color: #EF4444;
     color: #fff;
 }
-@media screen and (max-width:815px) {
-    .wrapper{
-        padding: 25px;
-    }
-    header{
-        flex-direction: column;
-    }
-    header :where(h2,.column){
-        margin-bottom: 13px;
-    }
-    .volume-slider input{
-        max-width: 100px;
-    }
-    .piano-keys{
-        margin-top: 20px;
-    }
-    .piano-keys .key:where(:nth-child(9), :nth-child(10)){
-        display: none;
-    }
-    .piano-keys .black{
-        height: 100px;
-        width: 40px;
-        margin: 0 -20px 0 -20px;
-    }
-    .piano-keys .white{
-        height: 180px;
-        width: 60px;
-    }
+
+footer{
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid #DDD8CE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-@media screen and (max-width:615px){
-    .piano-keys .key:nth-child(13),
-    .piano-keys .key:nth-child(14),
-    .piano-keys .key:nth-child(15),
-    .piano-keys .key:nth-child(16),
-    .piano-keys .key:nth-child(17){
-        display: none;
-    }
-    .piano-keys .white{
-        width: 50px;
-    }
+.hint-group{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
 }
 
+.hint-lbl{
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #A8A29C;
+    margin-right: 4px;
+}
+
+.kbd{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 5px;
+    background: #FDFCF9;
+    border: 1px solid #C5C0B5;
+    border-bottom: 2.5px solid #C5C0B5;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 700;
+    font-family: 'Courier New',monospace;
+    color: #6B6660;
+    box-shadow: 1px 1px 3px rgba(180,174,162,.55);
+}
+
+@media (max-width: 680px) {
+  #root{ 
+    padding: 20px 14px 36px; 
+    gap: 20px; 
+}
+  .logo-name{ 
+    font-size: 28px; 
+}
+  .piano-card{ 
+    padding: 20px 12px 32px; 
+}
+  .keys-wrap{ 
+    overflow-x: auto; 
+    justify-content: flex-start; 
+}
+  .key.white{ 
+    width: 40px; 
+}
+  .key.black{ 
+    width: 26px; 
+    margin-left: -15px; 
+    margin-right: -13px; 
+}
+}
