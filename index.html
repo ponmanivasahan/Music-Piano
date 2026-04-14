@@ -2,23 +2,44 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Melodify</title>
+        <title>Melodify- A Virtual Piano</title>
         <link rel="stylesheet" href="style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div class="wrapper">
-            <header>
-                <h2>Melodify</h2>
-                <div class="column volume-slider">
-                    <span>Volume</span><input type="range">
+        <div id="disco-canvas"></div>
+        <div id="root">
+            <header class="hd">
+         <div class="logo">
+               <div class="logo-name">Melo<em>dify</em></div>
+               <div class="logo-sub">Virtual Piano Studio</div>
+         </div>
+         <div class="hd-controls">
+            <div class="vol-wrap">
+                <span class="vol-label">Volume</span>
+                <div class="vol-row">
+                    <svg class="vol-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                       <path d="M2 6h3l4-3v10l-4-3H2V6z"/><path d="M11 5.5a3.5 3.5 0 010 5M13 3.5a6 6 0 010 9"/>
+                    </svg>
+                    <input type="range" id="volSlider" min="0" max="100" step="1" value="80">
+                    <span class="vol-val" id="volVal">80</span>
                 </div>
-                <div class="column keys-checkbox">
-                    <span>Show Keys</span> <input type="checkbox">
-                </div>
-            </header>
-            <ul class="piano-keys">
+            </div>
+            <div class="toggle-wrap">
+                <span class="toggle-label">Show Keys</span>
+                <div class="toggle-track on" id="showKeysBtn" role="switch" aria-checked="true"></div>
+            </div>
+            <div class="toggle-wrap">
+                <span class="toggle-label">Disco</span>
+                <div class="toggle-track" id="discoBtn" role="switch" aria-checked="false"></div>
+            </div>
+         </div>
+         </header>
+
+        
+        <div class="piano-card">
+            <ul class="piano-brand">
                 <li class="key white" data-key="a"><span>a</span></li>
                 <li class="key black" data-key="w"><span>w</span></li>
                 <li class="key white" data-key="s"><span>s</span></li>
@@ -38,6 +59,7 @@
                 <li class="key white" data-key=";"><span>;</span></li>
             </ul>
         </div>   
+        </div>
         <script src="index.js"></script>
     </body>
 </html>
