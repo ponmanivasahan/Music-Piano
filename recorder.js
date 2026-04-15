@@ -11,6 +11,7 @@ const Recorder=(()=>{
     const pbClock=document.getElementById('pbClock');
     let recording=false;
     let snapNotes=[];
+    let recStartTs=0;
     let tickIv=0;
     let playTOs=[],pbIv=0, livePlaying=false;
 
@@ -27,6 +28,7 @@ const Recorder=(()=>{
         if(!recording){
             stopPlayback();
             piano.startRec();
+            recStartTs=performance.now();
             recording=true;
             dot.className='rec-led recording';
             document.getElementById('recReel').classList.add('spinning');
@@ -38,7 +40,7 @@ const Recorder=(()=>{
             badge.textContent='';
             tickIv=setInterval(()=>{
                 const n=piano.getLive();
-                clockEl.textContent=fmt(performance.now()-(n._start || performance.now()));
+                clockEl.textContent=fmt(performance.now()-recStartTs);
                 setBadge(n.length);
             },300)
         }

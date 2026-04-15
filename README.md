@@ -24,23 +24,23 @@ The keyboard maps directly to piano keys:
 
 | Key | Note | Color |
 | --- | --- | --- |
-| A | C4 | White |
-| W | C#4 | Black |
-| S | D4 | White |
-| E | D#4 | Black |
-| D | E4 |
-| F | F4 |
-| T | F#4 |
-| G | G4 |
-| Y | G#4 |
-| H | A4 |
-| U | A#4 |
-| J | B4 |
-| K | C5 |
-| O | C#5 |
-| L | D5 |
-| P | D#5 |
-| ; | E5 |
+| A   | C4   | White |
+| W   | C#4  | Black |
+| S   | D4   | White |
+| E   | D#4  | Black |
+| D   | E4   | White |
+| F   | F4   | White |
+| T   | F#4  | Black |
+| G   | G4   | White |
+| Y   | G#4  | Black |
+| H   | A4   | White |
+| U   | A#4  | Black |
+| J   | B4   | White |
+| K   | C5   | White |
+| O   | C#5  | Black |
+| L   | D5   | White |
+| P   | D#5  | Black |
+| ;   | E5   | White |
 
 Hold multiple keys at the same time to play chords.
 
@@ -151,6 +151,7 @@ Black keys use a 3-stop dark gradient with a strong floor shadow to simulate glo
 Wood rail above the keyboard is a ::before pseudo-element with a warm amber gradient
 Recorder panel is structured like a small hardware unit — status strip on top, action strip on the bottom
 Toggle switches are physical sliders, not colored borders
+Took little help from copilot to ui and structuring readme.
 
 ## 📄 License
 
