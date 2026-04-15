@@ -18,6 +18,15 @@ if(showKeysBtn){
         showKeysBtn.setAttribute('aria-checked',String(enabled));
     });
 }
+
+const discoBtn=document.getElementById('discoBtn');
+discoBtn.addEventListener('click',()=>{
+    const on=Disco.toggle();
+    discoBtn.classList.remove('on');
+    discoBtn.classList.toggle('disco-on',on);
+    discoBtn.setAttribute('aria-checked',on ? 'true' :'false');
+})
+
 // const pianoKeys=document.querySelectorAll(".piano-keys .key"),
 // volumeSlider=document.querySelector(".volume-slider input"),
 // keysCheckbox=document.querySelector(".keys-checkbox input");
