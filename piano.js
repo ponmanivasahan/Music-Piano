@@ -5,6 +5,9 @@ const Piano=()=>{
   let mouseDown=false;
   let labelsOn=true;
 
+  let liveNotes=[];
+  let recActive=false;
+  let recStart=0;
   keyEls.forEach(el=>keyMap[el.dataset.key]=el);
 
   function release(el){
@@ -21,6 +24,10 @@ const Piano=()=>{
     const freq=parseFloat(el.dataset.freq);
     const key=el.dataset.key;
     AudioEngine.play(freq,key);
+
+    if(recActive){
+      liveNotes.push({key,t:performance.now()-recStart});
+    }
   }
 
   keyEls.forEach(el=>{
@@ -88,5 +95,25 @@ const Piano=()=>{
     return labelsOn;
   }
 
-  return {toggleLabels,releaseAll};
+  function startRec(){
+    liveNotes=[];
+    recStart=performance.now();
+    recActive=true;
+  }
+  function stopRec(){
+    recActive = false; 
+    return [...liveNotes];
+  }
+  function getLive(){
+    return[...liveNotes];
+  }
+
+  function highlight(key,durationMs){
+    const el=keyMap[key] || keyMap[key.toLowerCase()];
+    if(!el) return;
+    el.classList.add('active');
+    setTimeout(()=>el.classList.remove('active'),durationMs || 170);
+  }
+
+  return {toggleLabels,releaseAll,startRec,stopRec,getLive,highlight};
 };

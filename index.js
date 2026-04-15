@@ -20,13 +20,29 @@ if(showKeysBtn){
 }
 
 const discoBtn=document.getElementById('discoBtn');
-discoBtn.addEventListener('click',()=>{
-    const on=Disco.toggle();
-    discoBtn.classList.remove('on');
-    discoBtn.classList.toggle('disco-on',on);
-    discoBtn.setAttribute('aria-checked',on ? 'true' :'false');
-})
+if(discoBtn){
+    discoBtn.addEventListener('click',()=>{
+        const on=Disco.toggle();
+        discoBtn.classList.remove('on');
+        discoBtn.classList.toggle('disco-on',on);
+        discoBtn.setAttribute('aria-checked',on ? 'true' :'false');
+    });
+}
 
+(function(){
+    let _start=0;
+    const orig_startRec=Piano.startRec;
+    Piano.startRec=function(){
+        _start=performance.now();
+        orig_startRec();
+    }
+    const orig_getLive=Piano.getLive;
+    Piano.getLive=function(){
+        const n=orig_getLive();
+        n._start=_start;
+        return n;
+    }
+})();
 // const pianoKeys=document.querySelectorAll(".piano-keys .key"),
 // volumeSlider=document.querySelector(".volume-slider input"),
 // keysCheckbox=document.querySelector(".keys-checkbox input");
