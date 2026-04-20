@@ -10,6 +10,30 @@
     </head>
     <body>
         <canvas id="disco-canvas"></canvas>
+
+        <div id="loader">
+            <div class="loader-logo">Melo<em>dify</em></div>
+            <div class="loader-sub">Virtual Piano Studio</div>
+            <div class="loader-bars">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="loader-hint">Preparing your Studio ....</div>
+        </div>
+       
+        <div id="rotate-overlay">
+            <div class="rotate-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="5" y="2" width="14" height="20" rx="2" />
+                    <path d="M12 18h.01" />
+                    <path d="M3 913-3-3-3"/>
+                    <path d="M6 6H2"/>
+                </svg>
+            </div>
+            <div class="rotate-title">Rotate your device</div>
+            <div class="rotate-sub">Play Melodify in landscape</div>
+            <button class="rotate-btn" id="rotateTryBtn">Try Fullscreen</button>
+        </div>
+
         <div id="root">
             <header class="hd">
          <div class="logo">

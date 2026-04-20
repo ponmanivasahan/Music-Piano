@@ -847,6 +847,204 @@ footer{
     box-shadow: 1px 1px 3px rgba(180,174,162,.55);
 }
 
+#loader{
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: linear-gradient(135deg, #141210 0%, #1E1A16 50%, #0F0E0D 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 28px;
+    transition: opacity 0.7s ease, visiblity 0.7s ease;
+}
+
+#loader.hidden{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-logo{
+    font-family: 'Cormorant Garamond',serif;
+    font-size: 52px;
+    font-weight: 600;
+    letter-spacing: -2px;
+    color: #F0EDE6;
+    line-height: 1;
+}
+
+.loader-logo em{
+    font-style: italic;
+    background: linear-gradient(135deg, #22C55E, #16A34A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+     background-clip: text;
+}
+
+.loader-sub{
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #F0BB55, #C08830, #F0BB55);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: -16px;
+}
+
+.loader-bars{
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    height: 36px;
+}
+
+.loader-bars span{
+    display: inline-block;
+    width: 5px;
+    border-radius: 3px;
+    background: linear-gradient(to top, #22C55E, #86EFAC);
+    animation: eqBar 0.9s ease-in-out infinite alternate;
+}
+
+.loader-bars span:nth-child(1){
+    height: 12px;
+    animation-duration: 0.7s;
+}
+.loader-bars span:nth-child(2){
+  height: 28px;
+  animation-delay: 0.1s;
+  animation-duration: 0.9s;
+}
+.loader-bars span:nth-child(2){
+  height: 28px;
+  animation-delay: 0.1s;
+  animation-duration: 0.9s;
+}
+.loader-bars span:nth-child(3){
+  height: 36px;
+  animation-delay: 0.2s;
+  animation-duration: 0.6s;
+}
+.loader-bars span:nth-child(4){
+  height: 22px;
+  animation-delay: 0.05s;
+  animation-duration: 0.8s;
+}
+.loader-bars span:nth-child(5){
+  height: 18px;
+  animation-delay: 0.15s;
+  animation-duration: 1.0s;
+}
+.loader-bars span:nth-child(6){
+  height: 30px;
+  animation-delay: 0.25s;
+  animation-duration: 0.75s;
+}
+.loader-bars span:nth-child(7){
+  height: 14px;
+  animation-delay: 0.08s;
+  animation-duration: 0.65s;
+}
+
+@keyframes eqBar{
+    from {
+        transform: scaleY(0.2);
+        opacity: 0.4;
+    }
+    to{
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+.loader-hint{
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+#rotate-overlay{
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: linear-gradient(135deg, #141210 0%, #1E1A16 100%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+@media(max-width:900px) and (orientation: portrait){
+    #rotate-overlay{
+        display: flex;
+    }
+}
+
+.rotate-icon{
+    width: 72px;
+    height: 72px;
+    border: 2px solid rgba(34, 197, 94, .4);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    animation: rotatePhone 2.2s ease-in-out infinite;
+}
+
+.rotate-icon svg{
+    width: 36px;
+    height: 36px;
+    color: #22C55E;
+}
+.rotate-title{
+    font-family: 'Cormorant Garamond',serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #F0EDE6;
+    letter-spacing: -0.5px;
+}
+.rotate-sub{
+    font-size: 11px;
+    color: rgba(255, 255, 255, .4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.rotate-btn{
+    margin-top: 8px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: #22C55E;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.rotate-btn:hover{
+    background: #16A34A;
+}
+
+
+@keyframes rotatePhone{
+    0%,30%{
+        transform: rotate(0deg);
+    }
+    60%,100%{
+        transform: rotate(90deg);
+    }
+}
 @media (max-width: 680px) {
   #root{ 
     padding: 20px 14px 36px; 
