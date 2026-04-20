@@ -1031,12 +1031,15 @@ footer{
     cursor: pointer;
     transition: background 0.15s;
 }
-
-.rotate-btn:hover{
-    background: #16A34A;
+[data-theme="dark"] body{
+    background: #0D0C0B;
+    color: #EDE9E0;
 }
-
-
+[data-theme="dark"] .logo-name{color: #EDE9E0;}
+[data-theme="dark"] .piano-card{ background: #1A1816; border-color: #2A2824;}
+[data-theme="dark"] .rec-bar{ background: #1A1816; border-color: #2A2824;}
+[data-theme="dark"] .rec-top{background: #222019; border-color: #2A2824; }
+[data-theme="dark"] .track-pill{background: #222019; border-color: #2A2824; color: #8E897F; }
 @keyframes rotatePhone{
     0%,30%{
         transform: rotate(0deg);
@@ -1044,6 +1047,9 @@ footer{
     60%,100%{
         transform: rotate(90deg);
     }
+}
+.rotate-btn:hover{
+    background: #16A34A;
 }
 @media (max-width: 680px) {
   #root{ 

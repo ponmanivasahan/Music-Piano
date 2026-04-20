@@ -28,6 +28,56 @@ if(discoBtn){
         discoBtn.setAttribute('aria-checked',on ? 'true' :'false');
     });
 }
+
+const themeBtn=document.getElementById('themeBtn');
+const html=document.documentElement;
+(()=>{
+    const saved=localStorage.getItem('melodify-theme') || 'light';
+    html.dataset.theme=saved;
+    if(saved==='dark'){
+        themeBtn.classList.add('on');
+        themeBtn.setAttribute('aria-checked','true');
+    }
+})();
+
+if(themeBtn){
+    themeBtn.addEventListener('click',()=>{
+        const isDark=html.dataset.theme==='dark';
+        html.dataset.theme=isDark ? 'light' :'dark';
+        localStorage.setItem('melodify-theme',html.dataset.theme);
+        themeBtn.classList.toggle('on',!isDark);
+        themeBtn.setAttribute('aria-checked',String(!isDark));
+    })
+}
+
+const rotateTryBtn=document.getElementById('rotateTryBtn');
+if(rotateTryBtn){
+    rotateTryBtn.addEventListener('click',async()=>{
+        try{
+            await document.documentElement.requestFullscreen();
+            if(screen.orientation &&  screen.orientation.lock){
+                  await screen.orientation.lock('landscape')
+            }
+        }
+        catch(e){}
+    })
+}
+
+Promise.all([document.fonts.ready, new Promise(res=> setTimeout(res,2200))])
+.then(()=>{
+    const loader=document.getElementById('loader');
+    if(loader){
+        loader.classList.add('hidden')
+    }
+    setTimeout(()=>{
+        const c4=document.querySelector('[data-note="C4"]');
+        const wrap=document.getElementById('keysWrap');
+        if(c4 && wrap){
+            wrap.scrollLeft=Math.max(0,c4.offsetLeft-wrap.offsetWidth/2+22);
+        }
+    },400);
+})
+
 // const pianoKeys=document.querySelectorAll(".piano-keys .key"),
 // volumeSlider=document.querySelector(".volume-slider input"),
 // keysCheckbox=document.querySelector(".keys-checkbox input");
