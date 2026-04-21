@@ -70,6 +70,7 @@
         <div class="piano-card">
             <div class="piano-brand">Grand Virtual Piano &mdash; Melodify Studio</div>
             <div class="keys-wrap" id="keysWrap">
+                <div class="keys-inner" id="keysInner"></div>
                 <div class="key white" data-key="a" data-freq="261.63"><span>A</span></div>
                 <div class="key black" data-key="w" data-freq="277.18"><span>W</span></div>
                 <div class="key white" data-key="s" data-freq="293.66"><span>S</span></div>
@@ -89,6 +90,64 @@
                 <div class="key white" data-key=";" data-freq="659.25"><span>;</span></div>
             </div>
           </div>  
+
+          <div class="backing-card">
+            <div class="back-head">
+                <div class="back-head-icon">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8a6 6 0 1112 0M8 2v2M8 14v-2M14 8h-2M4 8H2"/><circle cx="8" cy="8" r="2"/></svg>
+                </div>
+                <span class="back-head-title">Backing Tracks - play piano over the beat!</span>
+            </div>
+            <div class="back-body">
+                <div class="tracks-row" id="tracksRow">
+                   <button class="track-pill" data-track="lofi">
+                    <svg class="pill-icon" viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"></svg>
+                        Lo-Fi Beats
+                   </button>
+                   <button class="track-pill" data-track="house">
+                    <svg class="pill-icon" viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+                    House Groove
+                   </button>
+                   <button class="track-pill" data-track="funk">
+                    <svg class="pill-icon" viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+                    Funk Groove
+                   </button>
+                   <button class="track-pill" data-track="ambient">
+                     <svg class="pill-icon" viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+                     Ambien Synth
+                   </button>
+                   <label class="upload-lbl" for="audioUpload">
+                      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 2v7M4 5l3-3 3 3M2 11h10"/></svg>
+                   </label>
+                   <input type="file" id="audioUpload" accept="audio/*" style="display: none">
+                </div>
+
+                <div class="back-controls">
+                    <button class="back-play-btn" id="backPlayBtn" disabled>
+                        <svg id="backPlayIcon" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg>
+                    </button>
+
+                    <div class="back-prog">
+                        <div class="back-name" id="backName">
+                            Pick a beat above or upload your own track
+                        </div>
+                        <div class="back-rail-row">
+                            <div class="back-rail">
+                                <div class="back-fill" id="backFill">
+                                </div>
+                            </div>
+                            <span class="back-time" id=""backTime>0:00</span>
+                        </div>
+                    </div>
+           
+                    <div class="back-vol-row">
+                         <svg class="back-vol-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h3l4-3v10l-4-3H2V6z"/><path d="M11 5.5a3.5 3.5 0 010 5"/></svg>
+
+                         <input type="range" class="back-vol" id="backVol" min="0" max="100" value="50" style="--pct:50%">
+                    </div>
+                </div>
+            </div>
+          </div>
           <div class="bottom">
             <div class="rec-bar">
                 <div class="rec-top">
