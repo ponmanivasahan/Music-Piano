@@ -47,6 +47,9 @@ if(themeBtn){
         localStorage.setItem('melodify-theme',html.dataset.theme);
         themeBtn.classList.toggle('on',!isDark);
         themeBtn.setAttribute('aria-checked',String(!isDark));
+        if(Disco.isOn && typeof Disco.refreshBackground==='function'){
+            Disco.refreshBackground();
+        }
     })
 }
 

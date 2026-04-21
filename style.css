@@ -1339,3 +1339,9 @@ footer{
     margin-right: -13px; 
 }
 }
+#disco-canvas{
+    background: transparent !important;
+}
+/* [data-theme="dark"] #disco-canvas{
+
+} */

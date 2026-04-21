@@ -30,10 +30,15 @@ const Disco=(()=>{
     resize();
     window.addEventListener('resize',resize);
 
+    function getBackgroundColor(){
+        const isDark=document.documentElement.dataset.theme==='dark';
+        return isDark ? '#0D0C0B' : '#FFFFFF';
+    }
     function frame(){
         const W=canvas.width, H=canvas.height;
         gl.clearRect(0,0,W,H);
-        gl.fillStyle='#FFFFFF';
+
+        gl.fillStyle=getBackgroundColor();
         gl.fillRect(0,0,W,H);
 
         blobs.forEach(b=>{
@@ -54,7 +59,8 @@ const Disco=(()=>{
 
         t+=0.02;
         if(Math.sin(t*9)>0.84){
-            gl.fillStyle='rgba(255,255,255,0.25)';
+            const flashColor=document.documentElement.dataset.theme==='dark' ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.25)';
+            gl.fillStyle=flashColor;
             gl.fillRect(0,0,W,H);
         }
             if(Math.random()> 0.97)blobs[Math.floor(Math.random() * blobs.length)].ci = Math.floor(Math.random()*COLS.length);
