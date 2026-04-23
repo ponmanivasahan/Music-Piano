@@ -84,8 +84,9 @@ Promise.all([document.fonts.ready, new Promise(res=> setTimeout(res,2200))])
 })
 
 const OCTAVE_DEFS=[
-    {label:'C4 - B4', notePrefix:'4'},
-    {label:'C5 - E5', notePrefix:'5'},
+    {label:'C3 - B3', octave:3},
+    {label:'C4 - B4', octave:4},
+    {label:'C5 - B5', octave:5},
 ]
 
 let curOct=0;
@@ -124,10 +125,11 @@ function updateOctNav() {
 
 function applyOctave(){
     if(!octMode) return;
-    const prefix=OCTAVE_DEFS[curOct].notePrefix;
+    const octave=OCTAVE_DEFS[curOct].octave;
     document.querySelectorAll('#keysInner .key').forEach(el=>{
         const note=el.dataset.note || '';
-        el.style.display=note.endsWith(prefix) ? '' : 'none';
+        const noteOct=parseInt(note.slice(-1),10);
+        el.style.display=noteOct===octave ? '' : 'none';
     })
 }
 
