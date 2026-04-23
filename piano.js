@@ -1,6 +1,7 @@
 const Piano=()=>{
-  const keyEls=Array.from(document.querySelectorAll('.key'));
+  const keyEls=Array.from(document.querySelectorAll('#keysInner .key'));
   const keyMap={};
+  const noteMap={};
   const heldKeys=new Set();
   let mouseDown=false;
   let labelsOn=true;
@@ -8,7 +9,15 @@ const Piano=()=>{
   let liveNotes=[];
   let recActive=false;
   let recStart=0;
-  keyEls.forEach(el=>keyMap[el.dataset.key]=el);
+  keyEls.forEach(el=>{
+    if(el.dataset.key){
+    keyMap[el.dataset.key]=el
+    }
+
+    if(el.dataset.note){
+      noteMap[el.dataset.note]=el;
+    }
+  });
 
   function release(el){
     if(el) el.classList.remove('pressed');
@@ -22,11 +31,14 @@ const Piano=()=>{
     if(!el || el.classList.contains('pressed')) return;
     el.classList.add('pressed');
     const freq=parseFloat(el.dataset.freq);
-    const key=el.dataset.key;
-    AudioEngine.play(freq,key);
+    const id=el.dataset.note || el.dataset.key || ('freq_' + freq);
+
+    if(!isNaN(freq)){
+      AudioEngine.play(freq,id);
+    }
 
     if(recActive){
-      liveNotes.push({key,t:performance.now()-recStart});
+      liveNotes.push({key:el.dataset.key || '',note:el.dataset.note || '',freq,t:performance.now()-recStart});
     }
   }
 
@@ -73,9 +85,9 @@ const Piano=()=>{
 
   document.addEventListener('keydown',e=>{
     if(e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
-    const k=e.key.toLowerCase();
+    const k=e.key=== ';' ? ';' : e.key.toLowerCase();
     if(heldKeys.has(k)) return;
-    const el=keyMap[k] || keyMap[e.key];
+    const el=keyMap[k];
     if(el){
       heldKeys.add(k);
       press(el);
@@ -83,9 +95,9 @@ const Piano=()=>{
   });
 
   document.addEventListener('keyup',e=>{
-    const k=e.key.toLowerCase();
+    const k=e.key===';' ? ';' : e.key.toLowerCase();
     heldKeys.delete(k);
-    const el=keyMap[k] || keyMap[e.key];
+    const el=keyMap[k];
     if(el) release(el);
   });
 
@@ -108,12 +120,12 @@ const Piano=()=>{
     return[...liveNotes];
   }
 
-  function highlight(key,durationMs){
-    const el=keyMap[key] || keyMap[key.toLowerCase()];
+  function highlight(keyOrNote,durationMs=170){
+    const el=keyMap[keyOrNote] || noteMap[keyOrNote];
     if(!el) return;
     el.classList.add('active');
-    setTimeout(()=>el.classList.remove('active'),durationMs || 170);
+    setTimeout(()=>el.classList.remove('active'),durationMs);
   }
 
-  return {toggleLabels,releaseAll,startRec,stopRec,getLive,highlight};
+  return {toggleLabels,releaseAll,startRec,stopRec,getLive,highlight,keyMap,noteMap};
 };

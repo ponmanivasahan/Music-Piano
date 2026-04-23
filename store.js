@@ -1,5 +1,5 @@
 const Store=(()=>{
-    const LS='melodify';
+    const LS='melodify_v2';
     const list=document.getElementById('recsList');
     const clrBtn=document.getElementById('clearAllBtn');
     const btnSave=document.getElementById('btnSave');
@@ -48,7 +48,7 @@ const Store=(()=>{
                 el.classList.remove('playing');
                 const pb=el.querySelector('.ri-play');
                 if(pb){
-                    pb.innerHTML='<svg viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg>'; 
+                    pb.innerHTML='<svg viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg>';
                     pb.classList.remove('stop'); 
                 }
             }
@@ -70,22 +70,21 @@ const Store=(()=>{
                 el.classList.add('playing');
                 const pb=el.querySelector('.ri-play');
                 if(pb){
-                    pb.textContent='Stop';
+                    pb.innerHTML='<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="10" y2="10"/><line x1="10" y1="4" x2="4" y2="10"/></svg>';
                     pb.classList.add('stop');
                 }
             }
             const dur=rec.notes[rec.notes.length-1].t+500;
-            rec.notes.forEach(({key,t})=>{
+            rec.notes.forEach(({key,t,note,freq})=>{
                 savedTOs.push(setTimeout(()=>{
-                    const keyEl=document.querySelector(`[data-key="${key}"]`);
-                    if(keyEl){
+                const keyEl=(note && piano.noteMap && piano.noteMap[note]) || (key  && piano.keyMap  && piano.keyMap[key]);                    if(keyEl){
                         keyEl.classList.add('active');
                         setTimeout(()=> 
                             keyEl.classList.remove('active'), 165);
                     }
-                    const freq=keyEl ? parseFloat(keyEl.dataset.freq) :0;
-                    if(freq){
-                        AudioEngine.play(freq,key+'_sv_'+t);
+                    const f= freq || (keyEl ? parseFloat(keyEl.dataset.freq) :0);
+                    if(f){
+                        AudioEngine.play(f,key+'_sv_'+t);
                     }
                 },t));
             });

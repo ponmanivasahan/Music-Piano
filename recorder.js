@@ -9,6 +9,7 @@ const Recorder=(()=>{
     const pbStrip=document.getElementById('pbStrip');
     const pbFill=document.getElementById('pbFill');
     const pbClock=document.getElementById('pbClock');
+    const reel=document.getElementById('recReel')
     let recording=false;
     let snapNotes=[];
     let recStartTs=0;
@@ -24,6 +25,15 @@ const Recorder=(()=>{
         badge.textContent=n+(n===1 ? 'note' : 'notes');
         badge.textContent=n>0 ? (n + 'note' + (n===1 ? '':'s')) : '';
     }
+    function setLbl(btn,text){
+        const lbl=btn.querySelector('.act-lbl');
+        if(lbl){
+            lbl.textContent=text;
+        }
+        else{
+            btn.childNodes[btn.childNodes.length-1].textContent=text;
+        }
+    }
     btnRec.addEventListener('click',()=>{
         if(!recording){
             stopPlayback();
@@ -31,9 +41,9 @@ const Recorder=(()=>{
             recStartTs=performance.now();
             recording=true;
             dot.className='rec-led recording';
-            document.getElementById('recReel').classList.add('spinning');
+            reel.classList.add('spinning');
             stateEl.textContent='Recording';
-            btnRec.textContent='Stop';
+            setLbl(btnRec,'Stop');
             btnRec.classList.add('on');
             btnPlay.disabled=true;
             btnSave.disabled=true;
@@ -51,7 +61,7 @@ const Recorder=(()=>{
            dot.className=snapNotes.length ? 'rec-led done' : 'rec-led';
            document.getElementById('recReel').classList.remove('spinning');
            stateEl.textContent=snapNotes.length ? 'Recorded':'Ready';
-           btnRec.textContent='Record';
+           setLbl(btnRec,'Record');
            btnRec.classList.remove('on');
            btnPlay.disabled=!snapNotes.length;
            btnSave.disabled=!snapNotes.length;
@@ -69,7 +79,7 @@ const Recorder=(()=>{
         playTOs=[];
         clearInterval(pbIv);
         pbStrip.classList.remove('on');
-        btnPlay.textContent='Play';
+        setLbl(btnPlay,'Play');
         btnRec.disabled=false;
         btnSave.disabled=!snapNotes.length;
     }
@@ -81,7 +91,7 @@ const Recorder=(()=>{
         }
         if(!snapNotes.length)return;
         livePlaying=true;
-        btnPlay.textContent='Stop';
+        setLbl(btnPlay,'Stop');
         btnRec.disabled=true;
         btnSave.disabled=true;
         pbStrip.classList.add('on');
@@ -92,15 +102,16 @@ const Recorder=(()=>{
             pbFill.style.width=Math.min(100,((performance.now()-s0)/dur)*100)+'%';
             pbClock.textContent=fmt(performance.now()-s0);
         },80);
-        snapNotes.forEach(({key,t})=>{
+        snapNotes.forEach(({key,note,freq,t})=>{
             playTOs.push(setTimeout(()=>{
-                const el=document.querySelector(`[data-key="${key}"]`);
+                const el=(note && piano.noteMap[note]) || (key && piano.keyMap[key]);
                 if(el){
                     el.classList.add('active');
                     setTimeout(()=>el.classList.remove('active'),170);
                 }
-                const freq=el ? parseFloat(el.dataset.freq):0;
-                if(freq) AudioEngine.play(freq,key+'_pb_'+t);
+                const f= freq || (el ? parseFloat(el.dataset.freq):0);
+                const id=(note || key || 'pb') + '_pb_' +t;
+                if(f) AudioEngine.play(f,id);
             },t));
         })
         playTOs.push(setTimeout(stopPlayback, dur+120));

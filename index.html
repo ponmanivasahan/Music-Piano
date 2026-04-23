@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" data-theme="light">
     <head>
         <meta charset="utf-8">
         <title>Melodify- A Virtual Piano</title>
@@ -70,24 +70,38 @@
         <div class="piano-card">
             <div class="piano-brand">Grand Virtual Piano &mdash; Melodify Studio</div>
             <div class="keys-wrap" id="keysWrap">
-                <div class="keys-inner" id="keysInner"></div>
-                <div class="key white" data-key="a" data-freq="261.63"><span>A</span></div>
-                <div class="key black" data-key="w" data-freq="277.18"><span>W</span></div>
-                <div class="key white" data-key="s" data-freq="293.66"><span>S</span></div>
-                <div class="key black" data-key="e" data-freq="311.13"><span>E</span></div>
-                <div class="key white" data-key="d" data-freq="329.63"><span>D</span></div>
-                <div class="key white" data-key="f" data-freq="349.23"><span>F</span></div>
-                <div class="key black" data-key="t" data-freq="369.99"><span>T</span></div>
-                <div class="key white" data-key="g" data-freq="392.00"><span>G</span></div>
-                <div class="key black" data-key="y" data-freq="415.30"><span>Y</span></div>
-                <div class="key white" data-key="h" data-freq="440.00"><span>H</span></div>
-                <div class="key black" data-key="u" data-freq="466.16"><span>U</span></div>
-                <div class="key white" data-key="j" data-freq="493.88"><span>J</span></div>
-                <div class="key white" data-key="k" data-freq="523.25"><span>K</span></div>
-                <div class="key black" data-key="o" data-freq="554.37"><span>O</span></div>
-                <div class="key white" data-key="l" data-freq="587.33"><span>L</span></div>
-                <div class="key black" data-key="p" data-freq="622.25"><span>P</span></div>
-                <div class="key white" data-key=";" data-freq="659.25"><span>;</span></div>
+                <div class="keys-inner" id="keysInner">
+                <div class="key white" data-key="a" data-note="C4" data-freq="261.63"><span>A</span></div>
+                <div class="key black" data-key="w" data-note="Db4" data-freq="277.18"><span>W</span></div>
+                <div class="key white" data-key="s"  data-note="D4" data-freq="293.66"><span>S</span></div>
+                <div class="key black" data-key="e" data-note="Eb4" data-freq="311.13"><span>E</span></div>
+                <div class="key white" data-key="d" data-note="E4" data-freq="329.63"><span>D</span></div>
+                <div class="key white" data-key="f" data-note="F4" data-freq="349.23"><span>F</span></div>
+                <div class="key black" data-key="t" data-note="Gb4" data-freq="369.99"><span>T</span></div>
+                <div class="key white" data-key="g" data-note="G4" data-freq="392.00"><span>G</span></div>
+                <div class="key black" data-key="y" data-note="Ab4" data-freq="415.30"><span>Y</span></div>
+                <div class="key white" data-key="h" data-note="A4" data-freq="440.00"><span>H</span></div>
+                <div class="key black" data-key="u" data-note="Bb4" data-freq="466.16"><span>U</span></div>
+                <div class="key white" data-key="j"  data-note="B4" data-freq="493.88"><span>J</span></div>
+                <div class="key white" data-key="k" data-note="C5" data-freq="523.25"><span>K</span></div>
+                <div class="key black" data-key="o" data-note="Db5" data-freq="554.37"><span>O</span></div>
+                <div class="key white" data-key="l" data-note="D5" data-freq="587.33"><span>L</span></div>
+                <div class="key black" data-key="p" data-note="Eb5" data-freq="622.25"><span>P</span></div>
+                <div class="key white" data-key=";" data-note="E5" data-freq="659.25"><span>;</span></div>
+            </div>
+            </div>
+
+            <div class="oct-nav" id="octNav">
+                <button class="oct-btn" id="octPrev" disabled title="Previous octave">
+                     <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="8,2 4,6 8,10"/></svg>
+                </button>
+                <div style="display: flex;flex-direction: column; align-items: center; gap: 5px;">
+                    <span class="oct-label" id="octLabel">C4 - B4</span>
+                    <div class="oct-dots" id="octDots"></div>
+                </div>
+                <button class="oct-btn" id="octNext" title="Next octave">
+                     <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4,2 8,6 4,10"/></svg>
+                </button>
             </div>
           </div>  
 
@@ -136,7 +150,7 @@
                                 <div class="back-fill" id="backFill">
                                 </div>
                             </div>
-                            <span class="back-time" id=""backTime>0:00</span>
+                            <span class="back-time" id="backTime">0:00</span>
                         </div>
                     </div>
            
@@ -169,16 +183,22 @@
                 </div>
                 <div class="rec-actions">
                    <button class="act act-rec" id="btnRec">
-                   <div class="act-icon"><svg viewBox="0 0 14 14" fill="currentColor"><circle cx="7" cy="7" r="4.5"/></svg></div>
-                    Record
+                    <div class="act-inner">
+                        <div class="act-icon"><svg viewBox="0 0 14 14" fill="currentColor"><circle cx="7" cy="7" r="4.5"/></svg></div>
+                        <span class="act-lbl">Record</span>
+                    </div>
                    </button>
                    <button class="act act-play" id="btnPlayLive" disabled>
-                    <div class="act-icon"><svg viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg></div>
-                    Play
+                    <div class="act-inner">
+                        <div class="act-icon"><svg viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg></div>
+                        <span class="act-lbl">Play</span>
+                    </div>
                     </button>  
                     <button class="act act-save" id="btnSave" disabled>
-                     <div class="act-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v2h10v-2M7 2v7M4 6l3 3 3-3"/></svg></div>
-                     Save
+                    <div class="act-inner">
+                        <div class="act-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v2h10v-2M7 2v7M4 6l3 3 3-3"/></svg></div>
+                        <span class="act-lbl">Save</span>
+                    </div>
                      </button> 
                 </div>
             </div>
@@ -195,7 +215,7 @@
           <footer>
             <div class="hint-group">
                 <span class="hint-lbl">White</span>
-                <span class="kdb">A</span><span class="kbd">S</span><span class="kbd">D</span>
+                <span class="kbd">A</span><span class="kbd">S</span><span class="kbd">D</span>
                 <span class="kbd">F</span><span class="kbd">G</span><span class="kbd">H</span>
                 <span class="kbd">J</span><span class="kbd">K</span><span class="kbd">L</span>
                 <span class="kbd">;</span>
@@ -208,8 +228,9 @@
             </div>
           </footer>
         </div>
-        <script src="disco.js"></script>
         <script src="audio.js"></script>
+        <script src="backing.js"></script>
+        <script src="disco.js"></script>
         <script src="piano.js"></script>
         <script src="recorder.js"></script>
         <script src="store.js"></script>
