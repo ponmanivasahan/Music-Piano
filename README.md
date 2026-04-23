@@ -15,6 +15,12 @@ Melodify is a fully interactive virtual piano with:
 - .Playback -- replay saved recordings with exact timing.
 - .Disco mode -- animated colorful background that pulses and shifts
 - . Volume control -- smooth gain slider with live readout.
+- .Animated loading screen -- startup loader with visualizer animation and smooth fade out.
+- .Dark mode -- theme toggle with localStorage persistence.
+- .Backing tracks -- built in Lo-Fi Beats, House Groove, Funk Groove, and Ambient Synth.
+- .Custom audio upload -- upload and play your own backing track file.
+- .3-octave range -- full key span from C3 to B5.
+- .Responsive octave navigation -- small-screen octave switcher for better mobile playability.
 
 ## How to play:
 
@@ -44,6 +50,8 @@ The keyboard maps directly to piano keys:
 
 Hold multiple keys at the same time to play chords.
 
+Current key range covers C3 to B5 (3 octaves).
+
 ### Using Your Mouse
 
 - . Click a key to play a note
@@ -55,7 +63,7 @@ Hold multiple keys at the same time to play chords.
 - . Tap any key to play it
 - . Slide your fingers across the keys to play notes continuously works like a real glissando.
 
-## 🎙️ Recording
+##  Recording
 
 The recorder panel sits below the piano. Here is how it works:
 
@@ -78,9 +86,9 @@ A play button — click to hear it, click again to stop
 A delete button — removes it permanently
 Clear All link at the top right — wipes everything
 
-Recordings are stored in localStorage under the key melodify. They persist across browser sessions but are tied to that specific browser on that device.
+Recordings are stored in localStorage under the key melodify_v2. They persist across browser sessions but are tied to that specific browser on that device.
 
-## 🕹️ Controls
+##  Controls
 
 ### Volume
 
@@ -94,7 +102,19 @@ Toggle switch that shows or hides the letter labels on each piano key. Useful on
 
 Toggle switch that activates the animated background. When on, large colorful blobs move and pulse across a white canvas behind the app. The toggle itself cycles through colors while active.
 
-## 🔊 Sound Engine Details
+### Dark Mode
+
+Toggle switch that changes the full UI between light and dark themes. Your selected theme is saved in localStorage and restored automatically on next load.
+
+### Backing Tracks
+
+Choose built in backing tracks (Lo-Fi Beats, House Groove, Funk Groove, Ambient Synth) and jam over them while playing piano.
+
+### Upload Audio
+
+Upload your own audio file and use it as a custom backing track with independent backing volume control.
+
+## Sound Engine Details
 
 Melodify uses the Web Audio API — no audio files are required.
 Each key press creates:
@@ -123,7 +143,7 @@ Chrome / Edge — full support
 Firefox — full support
 Safari — full support (iOS 14.5+)
 
-## 🐛 Common Issues
+##  Common Issues
 
 ### No sound on first click
 
@@ -141,7 +161,7 @@ Recordings are stored in localStorage. Clearing browser data, using private/inco
 
 Make sure touch-action: none is set on the .keys-wrap element in CSS — this prevents the browser from scrolling while you play.
 
-## 🎨 Design Notes
+##  Design Notes
 
 The UI is intentionally crafted to feel physical rather than flat:
 
@@ -153,8 +173,5 @@ Recorder panel is structured like a small hardware unit — status strip on top,
 Toggle switches are physical sliders, not colored borders
 Took little help from copilot to ui and structuring readme.
 
-## 📄 License
-
-MIT — free to use, modify, and share.
 
 Built with Web Audio API, vanilla JS, and a lot of attention to detail.
